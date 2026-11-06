@@ -121,7 +121,7 @@
 
 ![MySQL 终端查询入库结果](images/08-mysql-verify.png)
 
-**图 8** 在 MySQL 终端执行 `SELECT title, house, address, struct, area, floor, maketime, price FROM houseinfo ORDER BY id LIMIT 5;` 的结果，`5 rows in set` 确认数据已入库。终端默认字符集下中文显示为 `?`（数值与单位仍可辨认，如 `89.9?` 即 `89.9㎡`、`16465?/?` 即 `16465元/㎡`），属于终端显示问题；改用 `--default-character-set=utf8mb4` 连接后中文正常显示（见图 9 的逐字段核对）。
+**图 8** 在 MySQL 终端执行 `SELECT title, house, address, struct, area, floor, maketime, price FROM houseinfo ORDER BY id LIMIT 5;` 的结果。连接客户端时使用 `--default-character-set=utf8mb4` 指定字符集（与建表时的 `utf8mb4` 一致），中文标题、楼盘、地址以及 `㎡` 单位全部正常显示，无乱码；`5 rows in set` 确认数据已入库。同时执行了 `SELECT COUNT(*) FROM houseinfo`，结果 `after_count` 为 498，与 CSV 数据行数一致。
 
 | 项目                         | 实际结果            |
 | -------------------------- | --------------- |
